@@ -27,13 +27,6 @@ import teste from './leituristas';
 
 
 
-(async () => {
-  const users = await teste;
-  console.log(users);
-  // Now you can use the users array as needed in this module
-  
-})();
-
  
 
 

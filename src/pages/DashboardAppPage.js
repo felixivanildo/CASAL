@@ -38,17 +38,17 @@ export default function DashboardAppPage() {
 
   useEffect(() => {
     const getType = async () => {    
-        const asfa = await axios.put('http://10.254.4.132:3005/api/id', {servico: 401})         
-        const vis = await axios.put('http://10.254.4.132:3005/api/id', {servico: 1074})
-        const bynow = await axios.put('http://10.254.4.132:3005/api/id', {servico: 103})
-        const leitura = await axios.get('http://10.254.4.132:3005/api/gsaneos')
+        const asfa = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: 401})         
+        const vis = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: 1074})
+        const bynow = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: 103})
+        const leitura = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: "leituristas"})
 
-        setVisita(vis.data)       
-        setCorte(asfa.data)  
-        setFisicalization(bynow.data)
-        setleiturista(leitura.data)
+        setVisita(vis.data.data)       
+        setCorte(asfa.data.data)  
+        setFisicalization(bynow.data.data)
+        setleiturista(leitura.data.data)
 
-        console.log(leitura.data)
+        console.log(bynow.data, asfa.data, vis.data)
         
 
         // try{

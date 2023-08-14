@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 import { useState } from 'react';
 // @mui
 import { Container, Stack, Typography } from '@mui/material';
@@ -10,6 +11,24 @@ import PRODUCTS from '../_mock/products';
 // ----------------------------------------------------------------------
 
 export default function ProductsPage() {
+  const [downloadLink, setDownloadLink] = useState(null);
+
+  const handleDownload = async () => {
+    try {
+      console.log('clicked')
+      const response = await axios.get('http://10.254.4.132:3005/api/baixar', {
+        responseType: 'arraybuffer', // Important to specify responseType
+      });
+
+      const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+      const url = URL.createObjectURL(blob);
+      setDownloadLink(url);
+    } catch (error) {
+      console.error('Error downloading XLSX:', error);
+    }
+  };
+
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -45,6 +64,16 @@ export default function ProductsPage() {
         <ProductList products={PRODUCTS} />
         <ProductCartWidget />
       </Container>
+
+      
+      <div>
+      <button onClick={handleDownload}>Download XLSX</button>
+      {downloadLink && (
+        <a href={downloadLink} download="data.xlsx">
+          Click to download
+        </a>
+      )}
+    </div>
     </>
   );
 }
