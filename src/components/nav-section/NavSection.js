@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
 // @mui
 import { Box, List, ListItemText } from '@mui/material';
 //
 import { StyledNavItem, StyledNavItemIcon } from './styles';
+
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +18,7 @@ export default function NavSection({ data = [], ...other }) {
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
         {data.map((item) => (
-          <NavItem key={item.title} item={item} />
+          <NavItem key={item.title} item={item} tstitle={'Father forgives'}/>
         ))}
       </List>
     </Box>
@@ -31,9 +33,23 @@ NavItem.propTypes = {
 
 function NavItem({ item }) {
   const { title, path, icon, info } = item;
+  console.log(item)
+
+  const [realtitle, setReal] = useState ()
+
+  useEffect(()=>{
+    if (title === "dashboard") { setReal("dashboard")} 
+     if (title === "user") { setReal("Leituristas")} 
+     if (title === "product") { setReal("baixar")} 
+     if (title === "blog") { setReal("blog")
+     if (title === "login") { setReal("login")} } 
+
+  },[])
+
 
   return (
-    <StyledNavItem
+    <div style={{ display: title === 'Not found' ? 'none' : title === "login" ? "none" : "block" }}>   
+      <StyledNavItem 
       component={RouterLink}
       to={path}
       sx={{
@@ -44,11 +60,17 @@ function NavItem({ item }) {
         },
       }}
     >
-      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
 
-      <ListItemText disableTypography primary={title} />
+
+      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
+      
+      <ListItemText disableTypography primary={realtitle} />
+      
 
       {info && info}
     </StyledNavItem>
+    </div>
+ 
+
   );
 }
