@@ -198,6 +198,16 @@ export default function ProductsPage() {
             <div>
 
               <Controller
+                name="modulo"
+                defaultValue={"gsanas"}
+                control={control}
+                render={({ field }) => <input  style={{display: "none"}} {...field}/>}
+              />
+            </div>
+
+            <div>
+
+              <Controller
                 name="data_ini"
                 control={control}
                 render={({ field }) => <LocalizationProvider size="small" dateAdapter={AdapterDayjs} >

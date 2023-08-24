@@ -48,7 +48,8 @@ export default function DashboardAppPage() {
         setFisicalization(bynow.data.data)
         setleiturista(leitura.data.data)
 
-        console.log(bynow.data, asfa.data, vis.data)
+        console.log('here')
+        console.log(leitura.data.data)
         
 
         // try{
@@ -123,13 +124,13 @@ export default function DashboardAppPage() {
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
                 },
                 {
-                  name: 'Team B',
+                  name: 'Visita de Cobrança',
                   type: 'area',
                   fill: 'gradient',
                   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
                 },
                 {
-                  name: 'Team C',
+                  name: 'Fiscalização de Ligação',
                   type: 'line',
                   fill: 'solid',
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
