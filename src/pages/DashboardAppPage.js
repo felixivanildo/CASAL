@@ -34,6 +34,7 @@ export default function DashboardAppPage() {
   const [visita, setVisita] = useState ()
   // const [fiscalizacao, setFisca] = useState ()
   const [fiscalization, setFisicalization] = useState ()
+  const [quantidade, setQuantidade] = useState ({corte: [0], visita: [0], fiscalizacao: [0]})
 
 
   useEffect(() => {
@@ -42,14 +43,16 @@ export default function DashboardAppPage() {
         const vis = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: 1074})
         const bynow = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: 103})
         const leitura = await axios.put('http://10.254.4.132:3005/api/contagem', {servico: "leituristas"})
+        const contagem = await axios.get('http://10.254.4.132:3005/api/meses')
 
         setVisita(vis.data.data)       
         setCorte(asfa.data.data)  
         setFisicalization(bynow.data.data)
         setleiturista(leitura.data.data)
+        setQuantidade(contagem.data)
 
-        console.log('here')
-        console.log(leitura.data.data)
+        // console.log('here')
+        // console.log(contagem)
         
 
         // try{
@@ -121,26 +124,26 @@ export default function DashboardAppPage() {
                   name: 'Corte por Debito',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  data: quantidade.corte,
                 },
                 {
                   name: 'Visita de Cobrança',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                  data: quantidade.visita,
                 },
                 {
                   name: 'Fiscalização de Ligação',
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: quantidade.fiscalizacao,
                 },
-                {
-                  name: 'Team D',
-                  type: 'column',
-                  fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-                },
+                // {
+                //   name: 'Team D',
+                //   type: 'column',
+                //   fill: 'solid',
+                //   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                // },
               ]}
             />
           </Grid>

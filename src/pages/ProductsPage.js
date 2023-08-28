@@ -7,7 +7,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from 'react';
 // @mui
-import { Container, Stack, Typography, Switch } from '@mui/material';
+import { Container, Stack, Typography, Switch, Button } from '@mui/material';
 // components
 import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
 // mock
@@ -52,6 +52,10 @@ export default function ProductsPage() {
 
     if (transformedDate > transformedDateFim) {
       alert("Data inicial maior que a final")
+    }
+    else{
+      
+      await axios.put('http://10.254.4.132:3005/seletivo')
     }
   };
 
@@ -152,40 +156,45 @@ export default function ProductsPage() {
             <Controller
               name="corte_debito"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'401'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
 
             <p>Visita de cobrança:</p>
             <Controller
               name="visita_cobranca"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'1074'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
 
             <p>Corte a pedido:</p>
             <Controller
               name="corte_pedido"
+              defaultValue={'417'}
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
 
 
             <p>Fiscalização cobrança:</p>
             <Controller
               name="fiscalizacao_cobranca"
+              defaultValue={'1076'}
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
 
             <p>Fiscalização da ligação:</p>
             <Controller
               name="fiscalização_ligaçao"
+              defaultValue={'103'}
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
           </div>
 
-          <button   >SALVAR</button>
+          <Button variant="contained" type='submit'>Baixar</Button>
         </form>
 
         <br />
@@ -200,6 +209,7 @@ export default function ProductsPage() {
               <Controller
                 name="modulo"
                 defaultValue={"gsanas"}
+
                 control={control}
                 render={({ field }) => <input  style={{display: "none"}} {...field}/>}
               />
@@ -239,8 +249,9 @@ export default function ProductsPage() {
             <p>Implantação hidrometro:</p>
             <Controller
               name="implantacao_hidrometro"
+              defaultValue={'302'}
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -249,7 +260,8 @@ export default function ProductsPage() {
             <Controller 
               name="substituicao_hidrometro"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'303'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -258,7 +270,8 @@ export default function ProductsPage() {
             <Controller
               name="remanejamento_hidrometro_calcada"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'305'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
         </div>
@@ -272,7 +285,8 @@ export default function ProductsPage() {
             <Controller
               name="retirada_hidrometro"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'316'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -283,7 +297,8 @@ export default function ProductsPage() {
             <Controller
               name="religacao_agua_sa3"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'404'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -292,7 +307,8 @@ export default function ProductsPage() {
             <Controller
               name="ligacao_agua_sa3"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'413'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -304,32 +320,35 @@ export default function ProductsPage() {
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
           
           <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}> 
-            <p>Desobstrução rede água até 100:</p>
+            <p>Desobstrução rede água até 100mm:</p>
             
             <Controller
               name="desobstrucao_rede_100"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'507'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
             {/* Continue generating code for the rest of the tasks */}
 
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
-            <p>Religação água SA 3:</p>
+            <p>Desobstrução rede água acima 200mm:</p>
             <Controller
-              name="religacao_agua_sa3"
+              name="desobstrucai_rede_200"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'509'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
-            <p>Restabelecimento ligação água SA 3:</p>
+            <p>Rebaixamento rede água até 200mm:</p>
             <Controller
-              name="ligacao_agua_sa3"
+              name="rebaixamento_rede_100"
               control={control}
-              render={({ field }) => <Switch size='small' type="checkbox" {...field} />}
+              defaultValue={'510'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
             />
             </div>
 
@@ -337,16 +356,178 @@ export default function ProductsPage() {
 
             </div>
 
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+          
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}> 
+            <p>Rebaixamento rede água até 100 a 200mm:</p>
+            
+            <Controller
+              name="rebaixamento_100_200"
+              control={control}
+              defaultValue={'511'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            {/* Continue generating code for the rest of the tasks */}
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Remanejamento rede água ate 100mm :</p>
+            <Controller
+              name="remanejamento_100"
+              control={control}
+              defaultValue={'513'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Remanejamento rede água acima 200mm :</p>
+            <Controller
+              name="remanejamento_200"
+              control={control}
+              defaultValue={'515'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            
+
+            </div>
+
+            
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+          
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}> 
+            <p>Vazamento rede ate 100mm:</p>
+            
+            <Controller
+              name="vazamento_100"
+              control={control}
+              defaultValue={'519'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            {/* Continue generating code for the rest of the tasks */}
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Vazamento rede 100 até 200mm:</p>
+            <Controller
+              name="vazamento_100_200"
+              control={control}
+              defaultValue={'520'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Vazamento rede acima de 200mm:</p>
+            <Controller
+              name="vazamento_mais200"
+              control={control}
+              defaultValue={'521'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            
+
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+          
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}> 
+            <p>Sondagem rede água:</p>
+            
+            <Controller
+              name="sondagem_rede"
+              control={control}
+              defaultValue={'542'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            {/* Continue generating code for the rest of the tasks */}
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Ligação água sem pavimento</p>
+            <Controller
+              name="ligacao_sem_pavimento"
+              control={control}
+              defaultValue={'544'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Ligação água paralelepipedo:</p>
+            <Controller
+              name="ligacao_paralelepipedo"
+              control={control}
+              defaultValue={'545'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            
+
+            </div>
+
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+          
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}> 
+            <p>Ligação água asfalto:</p>
+            
+            <Controller
+              name="ligacao_asfalto"
+              control={control}
+              defaultValue={'546'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            {/* Continue generating code for the rest of the tasks */}
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Ligação água calcada:</p>
+            <Controller
+              name="ligacao_calcada"
+              control={control}
+              defaultValue={'547'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+            <p>Rebaixamento rede água calçada	:</p>
+            <Controller
+              name="rebaixamento_calcada"
+              control={control}
+              defaultValue={'551'}
+              render={({ field }) => <Switch defaultChecked size='small' type="checkbox" {...field} />}
+            />
+            </div>
+
+            
+
+            </div>
+
+            
+
           </div>
 
+
+      
           
 
         </div>
 
 
         
-
-          <button   >SALVAR</button>
+          <Button variant="contained" type='submit'>Baixar</Button>
+          
         </form>
 
       </Container>

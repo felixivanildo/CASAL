@@ -40,6 +40,7 @@ export default function AppWebsiteVisits({ title, subheader, chartLabels, chartD
 
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
         <ReactApexChart type="line" series={chartData} options={chartOptions} height={364} />
+        {console.log(chartData)}
       </Box>
     </Card>
   );
