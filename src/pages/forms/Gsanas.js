@@ -44,6 +44,7 @@ function Gsanas() {
   const onSubmit = async (data) => {
     console.log(data)
 
+    setVisible('flex')
     const transformedDate = transformDateFormat(String(data.data_ini.$d).substring(4, 15));
     const transformedDateFim = transformDateFormat(String(data.data_fim.$d).substring(4, 15));
     console.log(transformedDate, transformedDateFim); // Output: "2023-08-24"
@@ -74,6 +75,7 @@ function Gsanas() {
       axiosInstance
         .put(url, requestData)
         .then((response) => {
+          setVisible('none')
           const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
           setDownload('flex')
           const url = URL.createObjectURL(blob);
